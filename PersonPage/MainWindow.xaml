@@ -4,9 +4,46 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonPage"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        mc:Ignorable="d" Height="360" Width="600" FontSize="15" FontFamily="Adobe Garamond Pro" Title="Регистрация" FontWeight="ExtraLight"  OpacityMask="White" MinHeight="360" MinWidth="500">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF09291C" Offset="0"/>
+            <GradientStop Color="#FF74B6B5" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid Margin="15" >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         
+        <Border BorderThickness="2" Padding="5" Height="280" >
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0.006"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            
+            <StackPanel Grid.Column="0">
+                <Label Content="Введите ваше имя" Foreground="White" />
+            <TextBox Text="{Binding Name}"  />
+                <Label Content="Введите ваш возраст" Foreground="White" />
+            <TextBox Text="{Binding Age}"  />
+                <Label Content="Выберите пол" Foreground="White" />
+                <ComboBox x:Name="comboBox" FontSize="13" >
+                <ComboBoxItem Name="men" IsSelected="True" FontSize="12" >Мужчина</ComboBoxItem>
+                <ComboBoxItem Name="women" FontSize="12" >Женщина</ComboBoxItem>
+            </ComboBox>
+
+
+                <Button x:Name="btImageLink" Content="Загрузить фотографию" Click="btImageList_Click" Margin="0,50,0,10" Foreground="White" Background="#FF09423D" BorderBrush="#FFFFFCFC"/>
+            <Label Content="{Binding ImageLink}" FontSize="15" />
+                <Button x:Name="btRegist" Content="Зарегистрироваться" Click="btRegist_Click" Foreground="White" Background="#FF09423D" BorderBrush="White" />
+
+        </StackPanel>
+        </Border>
+        <Image Source="Image\User.png" Grid.Column="1" Margin="5,5" ></Image> 
     </Grid>
 </Window>

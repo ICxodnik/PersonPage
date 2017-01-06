@@ -24,5 +24,15 @@ namespace PersonPage
         {
             InitializeComponent();
         }
+
+        private void btImageList_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btRegist_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
