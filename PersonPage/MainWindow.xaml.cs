@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Ookii.Dialogs.Wpf;
+using System.IO;
 
 namespace PersonPage
 {
@@ -20,6 +22,8 @@ namespace PersonPage
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainDataContext context = new MainDataContext();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,7 +31,16 @@ namespace PersonPage
 
         private void btImageList_Click(object sender, RoutedEventArgs e)
         {
-
+            var imageChoose = new VistaOpenFileDialog();
+            var dialogResult = imageChoose.ShowDialog();
+            if (dialogResult.HasValue && dialogResult.Value)
+            {
+                var choosedFolder = imageChoose.FileName;
+                if (Directory.Exists(choosedFolder))
+                {
+                    context.ImageLink = choosedFolder;
+                }
+            }
         }
 
         private void btRegist_Click(object sender, RoutedEventArgs e)

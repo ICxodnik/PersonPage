@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonPage"
+         d:DataContext="{d:DesignInstance local:MainDataContext}"
         mc:Ignorable="d" Height="360" Width="600" FontSize="15" FontFamily="Adobe Garamond Pro" Title="Регистрация" FontWeight="ExtraLight"  OpacityMask="White" MinHeight="360" MinWidth="500">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -44,6 +45,6 @@
 
         </StackPanel>
         </Border>
-        <Image Source="Image\User.png" Grid.Column="1" Margin="5,5" ></Image> 
+        <Image Source="Image\\User.png" Grid.Column="1" Margin="5,5" ></Image> 
     </Grid>
 </Window>
