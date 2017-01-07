@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PersonPage
 {
-     public class MainDataContext : INotifyPropertyChanged
+     public class MainDataContext : INotifyPropertyChanged 
     {
         private string name = " ";
         private int age = 0;

@@ -37,13 +37,13 @@
             <StackPanel Grid.Column="0" >
 
                 <Label Content="Введите ваше имя" Foreground="White" />
-                <TextBox Text="{Binding Name}" GotFocus="TextBox_TextInput"  >
+                <TextBox Text="{Binding Name}" GotFocus="TextBox_TextInput" PreviewTextInput="TextBox_PreviewTextInput"  >
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0.9"/>
                     </TextBox.Background>
                 </TextBox>
                 <Label Content="Введите ваш возраст" Foreground="White" />
-                <TextBox Text="{Binding Age, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" TouchDown="TextBox_TextInput" GotFocus="TextBox_TextInput"  >
+                <TextBox Text="{Binding Age, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" TouchDown="TextBox_TextInput" GotFocus="TextBox_TextInput" PreviewTextInput="TextBox_PreviewTextInput_1"  >
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0.9"/>
                     </TextBox.Background>

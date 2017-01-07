@@ -58,7 +58,7 @@ namespace PersonPage
                 dbContex.SaveChanges();
             }
             btHavRegist.Visibility = Visibility.Visible;
-            this.DataContext = new MainDataContext();
+            context = new MainDataContext();
         }
 
 
@@ -66,5 +66,16 @@ namespace PersonPage
         {
             btHavRegist.Visibility = Visibility.Hidden;
         }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (Char.IsDigit(e.Text, 0)) e.Handled = true;
+        }
+
+        private void TextBox_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
+        }
+
     }
 }
