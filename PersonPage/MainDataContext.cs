@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonPage.DbLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,13 +14,6 @@ namespace PersonPage
         private int age = 0;
         private SexType sex = SexType.Men;
         private string imageLink = "Image\\User.png";
-
-
-        public enum SexType
-        {
-            Men = 1,
-            Women = 2
-        }
 
         public string Name
         {

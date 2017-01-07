@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Ookii.Dialogs.Wpf;
 using System.IO;
+using PersonPage.DbLayer;
 
 namespace PersonPage
 {
@@ -27,25 +28,43 @@ namespace PersonPage
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = context;
         }
 
         private void btImageList_Click(object sender, RoutedEventArgs e)
         {
-            var imageChoose = new VistaOpenFileDialog();
-            var dialogResult = imageChoose.ShowDialog();
-            if (dialogResult.HasValue && dialogResult.Value)
+            this.DataContext = context;
+            var imageChouse = new VistaOpenFileDialog();
+            var dialogResult = imageChouse.ShowDialog();
+            if (dialogResult.HasValue && dialogResult.Value && imageChouse.CheckFileExists )
             {
-                var choosedFolder = imageChoose.FileName;
-                if (Directory.Exists(choosedFolder))
-                {
+                    var choosedFolder = imageChouse.FileName;
                     context.ImageLink = choosedFolder;
-                }
             }
         }
 
         private void btRegist_Click(object sender, RoutedEventArgs e)
         {
+            using (DbContex dbContex = new DbContex())
+            {
+                Person person = new Person()
+                {
+                    Age = context.Age,
+                    ImageLink = context.ImageLink,
+                    Name = context.Name,
+                    Sex = context.Sex
+                };
+                dbContex.Persons.Add(person);
+                dbContex.SaveChanges();
+            }
+            btHavRegist.Visibility = Visibility.Visible;
+            this.DataContext = new MainDataContext();
+        }
 
+
+        private void TextBox_TextInput(object sender, RoutedEventArgs e)
+        {
+            btHavRegist.Visibility = Visibility.Hidden;
         }
     }
 }
