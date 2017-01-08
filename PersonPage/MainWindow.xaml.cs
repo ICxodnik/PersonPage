@@ -70,7 +70,7 @@ namespace PersonPage
         }
 
 
-        private void TextBox_TextInput(object sender, RoutedEventArgs e)
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             btHavRegist.Visibility = Visibility.Hidden;
         }
@@ -85,5 +85,28 @@ namespace PersonPage
             if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
         }
 
+        private void txName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (txName.Text == " ")
+            {
+                txName.Text = "";
+            }
+        }
+
+        private void txAge_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (txAge.Text == "0")
+            {
+                txAge.Text = "";
+            }
+        }
+
+        private void txName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txName.Text == " ")
+            {
+                txName.Text = "";
+            }
+        }
     }
 }
