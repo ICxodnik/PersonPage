@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PersonPage
 {
-     public class MainDataContext : INotifyPropertyChanged 
+    public class MainDataContext : INotifyPropertyChanged, IDataErrorInfo
     {
         private string name = " ";
         private int age = 0;
@@ -66,6 +66,47 @@ namespace PersonPage
                 Notify(nameof(ImageLink));
             }
         }
+
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public string this[string columnName]
+        {
+
+            get
+            {
+                if ("Name" == columnName)
+                {
+                    if (String.IsNullOrEmpty(Name))
+                    {
+                        return "Пожалуйста, введите ваше имя";
+                    }
+                }
+                if ("Age" == columnName)
+                {
+
+                    if (Age < 0)
+                    {
+                        return "Возраст должен быть больше 0";
+                    }
+                }
+                if ("Age" == columnName)
+                {
+
+                    if (Age > 100)
+                    {
+                        return "Возраст должен быть меньше 100";
+                    }
+                }
+                return "";
+            }
+        }
+
 
         private void Notify(string propName)
         {

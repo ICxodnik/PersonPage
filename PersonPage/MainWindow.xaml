@@ -12,6 +12,32 @@
             <GradientStop Color="#FF74B6B5" Offset="1"/>
         </LinearGradientBrush>
     </Window.Background>
+
+    <Window.Resources>
+        
+        <ControlTemplate x:Key="ErrorTemplate">
+            <DockPanel LastChildFill="True">
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <AdornedElementPlaceholder />
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+          Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Window.Resources>
+            
+    
+    
+    
     <Grid Margin="15">
         <Grid.Effect>
             <DropShadowEffect Color="#FF181818" Opacity="0.25" BlurRadius="10" ShadowDepth="10" Direction="320"/>
@@ -37,13 +63,15 @@
             <StackPanel Grid.Column="0" >
 
                 <Label Content="Введите ваше имя" Foreground="White" />
-                <TextBox Text="{Binding Name}" GotFocus="TextBox_TextInput" PreviewTextInput="TextBox_PreviewTextInput"  >
+                <TextBox Text="{Binding Name, ValidatesOnDataErrors=True, NotifyOnValidationError=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
+                 GotFocus="TextBox_TextInput" PreviewTextInput="TextBox_PreviewTextInput"   >
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0.9"/>
                     </TextBox.Background>
                 </TextBox>
                 <Label Content="Введите ваш возраст" Foreground="White" />
-                <TextBox Text="{Binding Age, ValidatesOnExceptions=true, NotifyOnValidationError=true, UpdateSourceTrigger=PropertyChanged}" TouchDown="TextBox_TextInput" GotFocus="TextBox_TextInput" PreviewTextInput="TextBox_PreviewTextInput_1"  >
+                <TextBox Text="{Binding Age,ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
+                  GotFocus="TextBox_TextInput" PreviewTextInput="TextBox_PreviewTextInput_1" >
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0.9"/>
                     </TextBox.Background>

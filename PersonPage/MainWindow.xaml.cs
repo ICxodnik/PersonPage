@@ -45,20 +45,28 @@ namespace PersonPage
 
         private void btRegist_Click(object sender, RoutedEventArgs e)
         {
-            using (DbContex dbContex = new DbContex())
-            {
-                Person person = new Person()
+            //if (context.Error == "")
+            //{
+                using (DbContex dbContex = new DbContex())
                 {
-                    Age = context.Age,
-                    ImageLink = context.ImageLink,
-                    Name = context.Name,
-                    Sex = context.Sex
-                };
-                dbContex.Persons.Add(person);
-                dbContex.SaveChanges();
-            }
-            btHavRegist.Visibility = Visibility.Visible;
-            context = new MainDataContext();
+                    Person person = new Person()
+                    {
+                        Age = context.Age,
+                        ImageLink = context.ImageLink,
+                        Name = context.Name,
+                        Sex = context.Sex
+                    };
+                    dbContex.Persons.Add(person);
+                    dbContex.SaveChanges();
+                }
+                btHavRegist.Visibility = Visibility.Visible;
+                this.DataContext = new MainDataContext();
+            //}
+            //else
+            //{
+            //    btHavRegist.Content = context.Error;
+            //    btHavRegist.Visibility = Visibility.Visible;
+            //}
         }
 
 
