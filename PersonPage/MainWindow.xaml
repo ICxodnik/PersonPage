@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonPage"
          d:DataContext="{d:DesignInstance local:MainDataContext}"
-        mc:Ignorable="d" Height="370" Width="600" FontSize="15" FontFamily="Adobe Garamond Pro" Title="Регистрация" FontWeight="ExtraLight"  OpacityMask="White" MinHeight="370" MinWidth="500">
+        mc:Ignorable="d" Width="600" FontSize="15" FontFamily="Adobe Devanagari" Title="Регистрация" FontWeight="ExtraLight"  OpacityMask="White" MinHeight="410" MinWidth="500" Height="410">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF09291C" Offset="0"/>
@@ -16,26 +16,33 @@
     <Window.Resources>
 
         <ControlTemplate x:Key="ErrorTemplate">
-            <DockPanel LastChildFill="True" >
-                <DockPanel.Background>
-                    <SolidColorBrush Color="#FF71406E" Opacity="0.5"/>
-                </DockPanel.Background>
-                <Border BorderBrush="Red" BorderThickness="0">
-                    <AdornedElementPlaceholder />
-                </Border>
-
-            </DockPanel>
+            <Label Background="#FFD6184E" VerticalAlignment="Stretch" FontSize="9">!</Label>
         </ControlTemplate>
 
-        <Style TargetType="TextBox">
+        <Style x:Name="designInpitTex" TargetType="TextBox">
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Bottom"></Setter>
+            <Setter Property="Background">
+
+                <Setter.Value>
+                    <SolidColorBrush Color="White" Opacity="0.4"/>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="true">
-                    <Setter Property="ToolTip"
-          Value="{Binding RelativeSource={x:Static RelativeSource.Self},
-Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Name="TitleInput" TargetType="Label">
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+
     </Window.Resources>
 
 
@@ -63,28 +70,15 @@ Path=(Validation.Errors)[0].ErrorContent}"/>
 
             <StackPanel Grid.Column="0" >
 
-                <Label Content="Введите ваше имя" Foreground="White" />
-                <TextBox x:Name="txName" Text="{Binding Name, ValidatesOnDataErrors=True, NotifyOnValidationError=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
-                 GotFocus="TextBox_GotFocus" PreviewTextInput="TextBox_PreviewTextInput" KeyDown="txName_KeyDown" LostFocus="txName_LostFocus" Validation.ErrorTemplate="{StaticResource ErrorTemplate}"  >
-                    <TextBox.Background>
-                        <SolidColorBrush Color="White" Opacity="0.9"/>
-                    </TextBox.Background>
-                </TextBox>
-                <Label Content="Введите ваш возраст" Foreground="White" />
+                <Label Content="Введите ваше имя"  />
+                <TextBox x:Name="txName"  Text="{Binding Name, ValidatesOnDataErrors=True, NotifyOnValidationError=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
+                 GotFocus="TextBox_GotFocus" PreviewTextInput="TextBox_PreviewTextInput"  Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
+                <Label Content="Введите ваш возраст"  />
                 <TextBox x:Name="txAge" Text="{Binding Age,ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
-                  GotFocus="TextBox_GotFocus" PreviewTextInput="TextBox_PreviewTextInput_1" KeyDown="txAge_KeyDown" Validation.ErrorTemplate="{StaticResource ErrorTemplate}">
-                    <TextBox.Background>
-                        <SolidColorBrush Color="White" Opacity="0.9"/>
-                    </TextBox.Background>
+                  GotFocus="TextBox_GotFocus" PreviewTextInput="TextBox_PreviewTextInput_1"  Validation.ErrorTemplate="{StaticResource ErrorTemplate}" >
                 </TextBox>
-                <Label Content="Выберите пол" Foreground="White" />
-                <ComboBox x:Name="comboBox" FontSize="13" >
-                    <ComboBox.Background>
-                        <LinearGradientBrush EndPoint="0,1" Opacity="0.8" StartPoint="0,0">
-                            <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                            <GradientStop Color="#FFE5E5E5" Offset="1"/>
-                        </LinearGradientBrush>
-                    </ComboBox.Background>
+                <Label Content="Выберите пол"  />
+                <ComboBox x:Name="comboBox" FontSize="13"  Opacity="0.5">
                     <ComboBoxItem Name="men" IsSelected="True" FontSize="12" >Мужчина</ComboBoxItem>
                     <ComboBoxItem Name="women" FontSize="12" >Женщина</ComboBoxItem>
                 </ComboBox>
@@ -94,13 +88,13 @@ Path=(Validation.Errors)[0].ErrorContent}"/>
                 <Button x:Name="btRegist" Content="Зарегистрироваться" Click="btRegist_Click" Margin="0,0,0,10" Foreground="White" Background="#FF09423D" BorderBrush="{x:Null}" Visibility="Visible" />
                 <Button x:Name="btHavRegist" Content="Регистрация выполнена успешно" Margin="0,0,0,5" Foreground="White" BorderBrush="{x:Null}" Visibility="Hidden"  >
                     <Button.Background>
-                        <SolidColorBrush Color="#FF71406E" Opacity="0.8"/>
+                        <SolidColorBrush Color="#FFD6184E" Opacity="0.8"/>
                     </Button.Background>
                 </Button>
 
 
             </StackPanel>
         </Border>
-        <Image Source="{Binding ImageLink}" Grid.Column="1" Margin="10,0" ></Image>
+        <Image Source="{Binding ImageLink}" Grid.Column="1" Margin="10,0" />
     </Grid>
 </Window>

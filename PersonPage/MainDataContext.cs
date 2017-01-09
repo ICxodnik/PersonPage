@@ -10,7 +10,7 @@ namespace PersonPage
 {
     public class MainDataContext : INotifyPropertyChanged, IDataErrorInfo
     {
-        private string name = " ";
+        private string name = "";
         private int age = 0;
         private SexType sex = SexType.Men;
         private string imageLink = "Image\\User.png";
@@ -67,11 +67,32 @@ namespace PersonPage
             }
         }
 
+        public string Validation1()
+        {
+            if (String.IsNullOrEmpty(Name))
+            {
+                return "Пожалуйста, введите ваше имя";
+            }
+            return "";
+        }
+        public string Validation2()
+        {
+            if (Age <= 0)
+            {
+                return "Возраст должен быть больше 0";
+            }
+            if (Age >= 100)
+            {
+                return "Возраст должен быть меньше 100";
+            }
+            return "";
+        }
+
         public string Error
         {
             get
             {
-                return null;
+                return Validation1()+", \n"+ Validation2();
             }
         }
 
@@ -82,26 +103,11 @@ namespace PersonPage
             {
                 if ("Name" == columnName)
                 {
-                    if (String.IsNullOrEmpty(Name))
-                    {
-                        return "Пожалуйста, введите ваше имя";
-                    }
+                    return Validation1();
                 }
                 if ("Age" == columnName)
                 {
-
-                    if (Age < 0)
-                    {
-                        return "Возраст должен быть больше 0";
-                    }
-                }
-                if ("Age" == columnName)
-                {
-
-                    if (Age > 100)
-                    {
-                        return "Возраст должен быть меньше 100";
-                    }
+                    return Validation2();
                 }
                 return "";
             }

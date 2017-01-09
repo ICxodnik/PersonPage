@@ -27,26 +27,26 @@ namespace PersonPage
 
         public MainWindow()
         {
-            InitializeComponent();
             this.DataContext = context;
+            InitializeComponent();
         }
 
         private void btImageList_Click(object sender, RoutedEventArgs e)
         {
-            this.DataContext = context;
-            var imageChouse = new VistaOpenFileDialog();
-            var dialogResult = imageChouse.ShowDialog();
-            if (dialogResult.HasValue && dialogResult.Value && imageChouse.CheckFileExists )
+            var imageSource = new VistaOpenFileDialog();
+            imageSource.Filter = "Image|*.png;*.jpg;*.bmp";
+            var dialogResult = imageSource.ShowDialog();
+            if (dialogResult.HasValue && dialogResult.Value)
             {
-                    var choosedFolder = imageChouse.FileName;
-                    context.ImageLink = choosedFolder;
+                var choosedFolder = imageSource.FileName;
+                context.ImageLink = choosedFolder;
             }
         }
 
         private void btRegist_Click(object sender, RoutedEventArgs e)
         {
-            //if (context.Error == "")
-            //{
+            if (context.Error == "")
+            {
                 using (DbContex dbContex = new DbContex())
                 {
                     Person person = new Person()
@@ -60,13 +60,14 @@ namespace PersonPage
                     dbContex.SaveChanges();
                 }
                 btHavRegist.Visibility = Visibility.Visible;
-                this.DataContext = new MainDataContext();
-            //}
-            //else
-            //{
-            //    btHavRegist.Content = context.Error;
-            //    btHavRegist.Visibility = Visibility.Visible;
-            //}
+                context = new MainDataContext();
+                this.DataContext = context;
+            }
+            else
+            {
+                btHavRegist.Content = context.Error;
+                btHavRegist.Visibility = Visibility.Visible;
+            }
         }
 
 
@@ -85,28 +86,5 @@ namespace PersonPage
             if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
         }
 
-        private void txName_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (txName.Text == " ")
-            {
-                txName.Text = "";
-            }
-        }
-
-        private void txAge_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (txAge.Text == "0")
-            {
-                txAge.Text = "";
-            }
-        }
-
-        private void txName_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (txName.Text == " ")
-            {
-                txName.Text = "";
-            }
-        }
     }
 }
