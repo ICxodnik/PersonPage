@@ -50,11 +50,8 @@ namespace PersonPage
         {
             if (btHavRegist.Content == StatusRegist)
             {
-                context = new MainDataContext();
-                this.DataContext = context;
-                btHavRegist.Content = "";
-                btRegist.Content = Regist;
-                btHavRegist.Visibility = Visibility.Hidden;
+                System.Threading.Thread.Sleep(150);
+                NewRegist();
             }
             else
             {
@@ -74,7 +71,6 @@ namespace PersonPage
                     }
                     btHavRegist.Content = StatusRegist;
                     btHavRegist.Visibility = Visibility.Visible;
-                    btHavRegist.Content = StatusRegist;
                     btRegist.Content = AgainRegist;
                 }
                 else
@@ -85,22 +81,40 @@ namespace PersonPage
             }
         }
 
+        private void NewRegist()
+        {
+            if (btHavRegist.Content == StatusRegist)
+            {
+                context = new MainDataContext();
+                this.DataContext = context;
+                btHavRegist.Content = "";
+                btRegist.Content = Regist;
+                btHavRegist.Visibility = Visibility.Hidden;
+            }
+        }
+
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (Char.IsDigit(e.Text, 0)) e.Handled = true;
+            if (Char.IsDigit(e.Text, 0) ) e.Handled = true;
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            System.Threading.Thread.Sleep(150);
+            NewRegist();
         }
 
         private void TextBox_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
         {
-            if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
+            if (Char.IsLetter(e.Text, 0)) e.Handled = true;
         }
 
         private void txName_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (context["Name"] != "")
             {
-                txName.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AB8E2F4A"));
+                txName.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F18E2F4A"));
             }
             else
             {
@@ -112,7 +126,7 @@ namespace PersonPage
         {
             if (context["Age"] != "")
             {
-                txAge.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#BB8E2F4A"));
+                txAge.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F18E2F4A"));
             }
             else
             {

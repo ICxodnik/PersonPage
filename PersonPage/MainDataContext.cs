@@ -73,21 +73,25 @@ namespace PersonPage
             {
                 return "Пожалуйста, введите ваше имя";
             }
+            if (Name.Length <= 5)
+            {
+                return "Слишком корокое имя";
+            }
+            if (Name.Length > 35)
+            {
+                return "Слишком длинное имя";
+            }
             return "";
         }
         public string Validation2()
         {
-            if (Age <= 0)
+            if (Age < 1)
             {
                 return "Возраст должен быть больше 0";
             }
             if (Age >= 100)
             {
                 return "Возраст должен быть меньше 100";
-            }
-            if (String.IsNullOrEmpty(Age.ToString()))
-            {
-                return "Пожалуйста, введите ваше возраст";
             }
             return "";
         }

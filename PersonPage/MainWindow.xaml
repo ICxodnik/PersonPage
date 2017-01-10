@@ -49,7 +49,7 @@
 
     <Grid Margin="15">
         <Grid.Effect>
-            <DropShadowEffect Color="#FF181818" Opacity="0.25" BlurRadius="10" ShadowDepth="10" Direction="320"/>
+            <DropShadowEffect Color="#FF181818" Opacity="0.4" BlurRadius="10" ShadowDepth="10" Direction="320"/>
         </Grid.Effect>
 
         <Grid.ColumnDefinitions>
@@ -72,10 +72,10 @@
             <StackPanel Grid.Column="0" >
 
                 <Label Content="Введите ваше имя"  />
-                <TextBox x:Name="txName"  Text="{Binding Name, ValidatesOnDataErrors=True, NotifyOnValidationError=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="TextBox_PreviewTextInput"  Validation.ErrorTemplate="{StaticResource ErrorTemplate}" TextChanged="txName_TextChanged"  />
+                <TextBox x:Name="txName"  Text="{Binding Name, ValidatesOnDataErrors=True, NotifyOnValidationError=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="TextBox_PreviewTextInput"  Validation.ErrorTemplate="{StaticResource ErrorTemplate}" TextChanged="txName_TextChanged" GotFocus="TextBox_GotFocus"  />
                 <Label Content="Введите ваш возраст"  />
                 <TextBox x:Name="txAge" Text="{Binding Age,ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
-                  PreviewTextInput="TextBox_PreviewTextInput_1"  Validation.ErrorTemplate="{StaticResource ErrorTemplate}" TextChanged="txName_TextChanged_1"  >
+                  PreviewTextInput="TextBox_PreviewTextInput_1"  Validation.ErrorTemplate="{StaticResource ErrorTemplate}" TextChanged="txName_TextChanged_1" GotFocus="TextBox_GotFocus"  >
                 </TextBox>
                 <Label Content="Выберите пол"  />
                 <ComboBox x:Name="comboBox" FontSize="13"  Opacity="0.5">
