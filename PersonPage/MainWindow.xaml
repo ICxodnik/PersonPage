@@ -16,7 +16,7 @@
     <Window.Resources>
 
         <ControlTemplate x:Key="ErrorTemplate">
-            <Label Background="#FFD6184E" VerticalAlignment="Stretch" FontSize="9">!</Label>
+            <!--<Label Background="#FFD6184E" VerticalAlignment="Stretch" FontSize="9">!</Label>-->
         </ControlTemplate>
 
         <Style x:Name="designInpitTex" TargetType="TextBox">
@@ -32,6 +32,7 @@
                     <SolidColorBrush Color="White" Opacity="0.4"/>
                 </Setter.Value>
             </Setter>
+            
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="true">
                     <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
@@ -71,11 +72,10 @@
             <StackPanel Grid.Column="0" >
 
                 <Label Content="Введите ваше имя"  />
-                <TextBox x:Name="txName"  Text="{Binding Name, ValidatesOnDataErrors=True, NotifyOnValidationError=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" 
-                 GotFocus="TextBox_GotFocus" PreviewTextInput="TextBox_PreviewTextInput"  Validation.ErrorTemplate="{StaticResource ErrorTemplate}" />
+                <TextBox x:Name="txName"  Text="{Binding Name, ValidatesOnDataErrors=True, NotifyOnValidationError=True,ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="TextBox_PreviewTextInput"  Validation.ErrorTemplate="{StaticResource ErrorTemplate}" TextChanged="txName_TextChanged"  />
                 <Label Content="Введите ваш возраст"  />
                 <TextBox x:Name="txAge" Text="{Binding Age,ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
-                  GotFocus="TextBox_GotFocus" PreviewTextInput="TextBox_PreviewTextInput_1"  Validation.ErrorTemplate="{StaticResource ErrorTemplate}" >
+                  PreviewTextInput="TextBox_PreviewTextInput_1"  Validation.ErrorTemplate="{StaticResource ErrorTemplate}" TextChanged="txName_TextChanged_1"  >
                 </TextBox>
                 <Label Content="Выберите пол"  />
                 <ComboBox x:Name="comboBox" FontSize="13"  Opacity="0.5">
@@ -83,14 +83,14 @@
                     <ComboBoxItem Name="women" FontSize="12" >Женщина</ComboBoxItem>
                 </ComboBox>
 
-
-                <Button x:Name="btImageLink" Content="Загрузить фотографию" Click="btImageList_Click" Margin="0,55,0,10" Foreground="White" Background="#FF09423D" BorderBrush="{x:Null}" />
-                <Button x:Name="btRegist" Content="Зарегистрироваться" Click="btRegist_Click" Margin="0,0,0,10" Foreground="White" Background="#FF09423D" BorderBrush="{x:Null}" Visibility="Visible" />
-                <Button x:Name="btHavRegist" Content="Регистрация выполнена успешно" Margin="0,0,0,5" Foreground="White" BorderBrush="{x:Null}" Visibility="Hidden"  >
+                <Button x:Name="btHavRegist" Content="" Margin="0,25,0,5" Foreground="White" BorderBrush="{x:Null}" Visibility="Hidden"  >
                     <Button.Background>
-                        <SolidColorBrush Color="#FFD6184E" Opacity="0.8"/>
+                        <SolidColorBrush Color="#FF8E2F4A" Opacity="0.8"/>
                     </Button.Background>
                 </Button>
+                <Button x:Name="btImageLink" Content="Загрузить фотографию" Click="btImageList_Click" Margin="0,30,0,10" Foreground="White" Background="#FF09423D" BorderBrush="{x:Null}"  />
+                <Button x:Name="btRegist" Content="Зарегистрироваться" Click="btRegist_Click" Margin="0,0,0,5" Foreground="White" Background="#FF09423D" BorderBrush="{x:Null}" Visibility="Visible"  />
+               
 
 
             </StackPanel>

@@ -24,11 +24,14 @@ namespace PersonPage
     public partial class MainWindow : Window
     {
         private MainDataContext context = new MainDataContext();
+        const string StatusRegist = "Регистрация выполнена успешно";
+        const string AgainRegist = "Зарегистрировать нового пользователя";
+        const string Regist = "Зарегистрироваться";
 
         public MainWindow()
         {
-            this.DataContext = context;
             InitializeComponent();
+            this.DataContext = context;
         }
 
         private void btImageList_Click(object sender, RoutedEventArgs e)
@@ -45,36 +48,43 @@ namespace PersonPage
 
         private void btRegist_Click(object sender, RoutedEventArgs e)
         {
-            if (context.Error == "")
+            if (btHavRegist.Content == StatusRegist)
             {
-                using (DbContex dbContex = new DbContex())
-                {
-                    Person person = new Person()
-                    {
-                        Age = context.Age,
-                        ImageLink = context.ImageLink,
-                        Name = context.Name,
-                        Sex = context.Sex
-                    };
-                    dbContex.Persons.Add(person);
-                    dbContex.SaveChanges();
-                }
-                btHavRegist.Visibility = Visibility.Visible;
                 context = new MainDataContext();
                 this.DataContext = context;
+                btHavRegist.Content = "";
+                btRegist.Content = Regist;
+                btHavRegist.Visibility = Visibility.Hidden;
             }
             else
             {
-                btHavRegist.Content = context.Error;
-                btHavRegist.Visibility = Visibility.Visible;
+                if (context.Error == "")
+                {
+                    using (DbContex dbContex = new DbContex())
+                    {
+                        Person person = new Person()
+                        {
+                            Age = context.Age,
+                            ImageLink = context.ImageLink,
+                            Name = context.Name,
+                            Sex = context.Sex
+                        };
+                        dbContex.Persons.Add(person);
+                        dbContex.SaveChanges();
+                    }
+                    btHavRegist.Content = StatusRegist;
+                    btHavRegist.Visibility = Visibility.Visible;
+                    btHavRegist.Content = StatusRegist;
+                    btRegist.Content = AgainRegist;
+                }
+                else
+                {
+                    btHavRegist.Content = context.Error;
+                    btHavRegist.Visibility = Visibility.Visible;
+                }
             }
         }
 
-
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            btHavRegist.Visibility = Visibility.Hidden;
-        }
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -86,5 +96,28 @@ namespace PersonPage
             if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
         }
 
+        private void txName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (context["Name"] != "")
+            {
+                txName.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AB8E2F4A"));
+            }
+            else
+            {
+                txName.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5FFFFFFF"));
+            }
+        }
+
+        private void txName_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            if (context["Age"] != "")
+            {
+                txAge.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#BB8E2F4A"));
+            }
+            else
+            {
+                txAge.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5FFFFFFF"));
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace PersonPage
     public class MainDataContext : INotifyPropertyChanged, IDataErrorInfo
     {
         private string name = "";
-        private int age = 0;
+        private int age = 1;
         private SexType sex = SexType.Men;
         private string imageLink = "Image\\User.png";
 
@@ -85,6 +85,10 @@ namespace PersonPage
             {
                 return "Возраст должен быть меньше 100";
             }
+            if (String.IsNullOrEmpty(Age.ToString()))
+            {
+                return "Пожалуйста, введите ваше возраст";
+            }
             return "";
         }
 
@@ -92,7 +96,11 @@ namespace PersonPage
         {
             get
             {
-                return Validation1()+", \n"+ Validation2();
+                if(Validation1() == "" || Validation2() =="")
+                {
+                    return Validation1() + Validation2();
+                }
+                return Validation1() + ", \n" + Validation2();
             }
         }
 
