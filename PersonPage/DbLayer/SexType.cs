@@ -8,7 +8,7 @@ namespace PersonPage.DbLayer
 {
     public enum SexType
     {
-        Men = 1,
-        Women = 2
+        Men = 0,
+        Women = 1
     }
 }

@@ -87,6 +87,7 @@ namespace PersonPage
             {
                 context = new MainDataContext();
                 this.DataContext = context;
+                comboBox.SelectedIndex = (int)SexType.Men;
                 btHavRegist.Content = "";
                 btRegist.Content = Regist;
                 btHavRegist.Visibility = Visibility.Hidden;
@@ -118,7 +119,7 @@ namespace PersonPage
             }
             else
             {
-                txName.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5FFFFFFF"));
+                txName.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#55FFFFFF"));
             }
         }
 
@@ -130,7 +131,20 @@ namespace PersonPage
             }
             else
             {
-                txAge.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5FFFFFFF"));
+                txAge.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#55FFFFFF"));
+            }
+        }
+
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((SexType)comboBox.SelectedIndex == SexType.Men)
+            {
+                context.ImageLink = "Image\\User.png";
+            }
+            if ((SexType)comboBox.SelectedIndex == SexType.Women)
+            {
+                context.ImageLink = "Image\\UserW.png";
             }
         }
     }
