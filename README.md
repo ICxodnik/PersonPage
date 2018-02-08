@@ -11,6 +11,5 @@ PersonPage uses a number of open source projects to work properly:
 
 ### ScreenShots
 <img alt="" src="https://github.com/ICxodnik/PersonPage/blob/master/PersonPage/ScreenShots/Снимок.PNG" width="100%">
-<img alt="" src="https://github.com/ICxodnik/PersonPage/blob/master/PersonPage/ScreenShots/Снимок1.PNG" float = "left" width="50%">
-<img alt="" src="https://github.com/ICxodnik/PersonPage/blob/master/PersonPage/ScreenShots/Снимок2.PNG" float = "right" width="50%">
-<img alt="" src="https://github.com/ICxodnik/PersonPage/blob/master/PersonPage/ScreenShots/Снимок3.PNG" width="100%">
+<img alt="" src="https://github.com/ICxodnik/PersonPage/blob/master/PersonPage/ScreenShots/Снимок1.PNG" style="float:right" width="50%">
+<img alt="" src="https://github.com/ICxodnik/PersonPage/blob/master/PersonPage/ScreenShots/Снимок3.PNG" style="float:left" width="50%">
