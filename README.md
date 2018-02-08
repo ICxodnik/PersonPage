@@ -10,6 +10,14 @@ PersonPage uses a number of open source projects to work properly:
 * MVVM
 
 ### ScreenShots
-<img alt="" src="https://github.com/ICxodnik/PersonPage/blob/master/PersonPage/ScreenShots/Снимок.PNG" width="100%">
-<img alt="" src="https://github.com/ICxodnik/PersonPage/blob/master/PersonPage/ScreenShots/Снимок1.PNG" style="float:left" width="50%">
-<img alt="" src="https://github.com/ICxodnik/PersonPage/blob/master/PersonPage/ScreenShots/Снимок3.PNG" style="float:right" width="50%">
+<img alt="" src="https://github.com/ICxodnik/PersonPage/blob/master/PersonPage/ScreenShots/Снимок.PNG" width="80%">
+<div align="center">
+
+<div style="float:left">
+<img alt="" src="https://github.com/ICxodnik/PersonPage/blob/master/PersonPage/ScreenShots/Снимок1.PNG" width="40%">
+ </div>
+
+<div style="float:right">
+<img alt="" src="https://github.com/ICxodnik/PersonPage/blob/master/PersonPage/ScreenShots/Снимок3.PNG" width="40%">
+  </div>
+   </div>
